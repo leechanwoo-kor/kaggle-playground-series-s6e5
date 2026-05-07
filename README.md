@@ -24,5 +24,5 @@ pip install -r requirements.txt
 | # | 설명 | OOF AUC | LB |
 |---|------|---------|-----|
 | 001 | XGBoost Baseline (5F, lr=0.05, 1000est, 14 features) | 0.94906 | 0.94874 |
-| 002 | XGB + LGB + CAT, equal blend (5F 동일 split, ES) | 0.95010 | — |
-| 003 | EXP-002 + GPU + CAT iter 확대 (best_iter ~3485) | **0.95030** | — |
+| 002 | XGB + LGB + CAT, equal blend (5F 동일 split, ES) | 0.95010 | 0.94942 |
+| 003 | EXP-002 + GPU + CAT iter 확대 (best_iter ~3485) | **0.95030** | **0.94964** |
