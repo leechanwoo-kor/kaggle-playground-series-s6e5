@@ -30,5 +30,6 @@
 
 ## TODO
 - [x] 데이터 다운로드 (`data/train.csv`, `data/test.csv`, `data/sample_submission.csv`)
-- [ ] EDA 노트북 (`eda.ipynb`)
+- [x] EDA 노트북 (`eda.ipynb`)
+- [ ] `PitStop` 컬럼 정의 재확인 (PitStop=1 → PitNextLap=1 비율 24.8% 의외)
 - [ ] Baseline 학습/제출 (`xgb_baseline.ipynb`)

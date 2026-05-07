@@ -38,6 +38,16 @@ License: CC BY 4.0
 - **결측 없음**
 - ID는 train/test 연속 (시계열적 분리 가능성 — 검증 시 주의)
 - Position_Change 가 float인데 의미상 정수 — 유의
+- **카디널리티**: Driver=887 (train-only 86, test-only 0), Race=26 (`Pre-Season Testing` 포함), Compound=5 (HARD/MEDIUM/SOFT/INTERMEDIATE/WET), Year=4 (2022–2025), Stint=1–8
+
+### EDA 핵심 발견 (`notebooks/eda.ipynb`)
+- **Stint가 가장 강력한 단일 시그널**:
+  - Stint=1 → 핏 확률 6.0%
+  - **Stint=2 → 39.1%** (1-stop 전략의 전형적 핏 시점)
+  - Stint=3 → 29.3%, Stint=4 → 17.2%, Stint=5+ → 5% 이하
+- TyreLife / RaceProgress / LapNumber가 도메인적 핵심 신호 (Compound별 마모 곡선 다름)
+- Train/Test 분포는 거의 동일 (covariate shift 없음)
+- ⚠️ **확인 필요**: `PitStop=1`일 때 `PitNextLap=1` 비율이 24.8% (PitStop=0의 19.1%보다 높음). 정의 재검토 필요 — 단순한 "현재 랩 핏" 의미가 아닐 수 있음
 
 ---
 
