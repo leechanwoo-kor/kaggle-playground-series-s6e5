@@ -21,6 +21,6 @@ pip install -r requirements.txt
 
 ## Experiments
 
-| # | 설명 | OOF | LB |
-|---|------|-----|-----|
-| 001 | — | — | — |
+| # | 설명 | OOF AUC | LB |
+|---|------|---------|-----|
+| 001 | XGBoost Baseline (5F, lr=0.05, 1000est, 14 features) | 0.94906 | — |
