@@ -1,8 +1,8 @@
 # Playground Series S6E5 - Predicting F1 Pit Stops
 
-대회 링크: https://www.kaggle.com/competitions/playground-series-s6e5
+이진 분류 (PitNextLap 0/1) | ROC AUC | 2026-05-01 ~ 2026-05-31
 
-> 평가지표 / 타깃 / 마감일은 대회 페이지에서 확인 후 `docs/overview.md`에 채우기.
+대회 링크: https://www.kaggle.com/competitions/playground-series-s6e5
 
 ```
 data/               대회 데이터

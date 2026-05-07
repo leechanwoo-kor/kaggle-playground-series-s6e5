@@ -1,8 +1,9 @@
 # 실험 기록 - Playground Series S6E5
 
 **대회**: Predicting F1 Pit Stops
-**평가지표**: TODO
-**기간**: TODO
+**평가지표**: ROC AUC
+**기간**: 2026-05-01 ~ 2026-05-31
+**타깃**: `PitNextLap` (이진, 양성 비율 19.9%)
 
 ---
 
@@ -28,6 +29,6 @@
 ---
 
 ## TODO
-- [ ] 데이터 다운로드 (`data/train.csv`, `data/test.csv`, `data/sample_submission.csv`)
-- [ ] EDA 노트북
-- [ ] Baseline 학습/제출
+- [x] 데이터 다운로드 (`data/train.csv`, `data/test.csv`, `data/sample_submission.csv`)
+- [ ] EDA 노트북 (`eda.ipynb`)
+- [ ] Baseline 학습/제출 (`xgb_baseline.ipynb`)

@@ -1,26 +1,33 @@
 # Overview
 
-대회 링크: https://www.kaggle.com/competitions/playground-series-s6e5
+Welcome to the 2026 Kaggle Playground Series! We plan to continue in the spirit of previous playgrounds, providing interesting and approachable datasets for our community to practice their machine learning skills, and anticipate a competition each month.
 
-> ⚠️ Kaggle 페이지가 JS 렌더링이라 자동 fetch 실패. 아래 항목은 페이지에서 복사해 채우기.
-
-## Goal
-Predict F1 pit stops. (정확한 타깃 컬럼명/형태는 페이지 확인)
+**Your Goal:** Predict whether a Formula 1 driver will pit on the next lap.
 
 ## Evaluation
-TODO: 평가지표 (e.g. RMSE / MAE / Accuracy / AUC ...)
+Submissions are evaluated on [area under the ROC curve](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html) between the predicted probability and the observed target.
 
-## Submission File
-TODO: 헤더 + 샘플 행
+### Submission File
+For each `id` in the test set, you must predict a probability for the `PitNextLap` target. The file should contain a header and have the following format:
 
 ```
-id,target
-...
+id,PitNextLap
+439140,0.2
+439141,0.3
+439142,0.9
+etc.
 ```
 
 ## Timeline
-- **Start Date** — 2026-05-01 (추정)
-- **Final Submission Deadline** — 2026-05-31 (추정)
+- **Start Date** — May 1, 2026
+- **Entry Deadline** — Same as the Final Submission Deadline
+- **Team Merger Deadline** — Same as the Final Submission Deadline
+- **Final Submission Deadline** — May 31, 2026
+
+All deadlines are at 11:59 PM UTC on the corresponding day unless otherwise noted.
+
+## Prizes
+- 1st / 2nd / 3rd Place — Choice of Kaggle merchandise (한 번 수상 시 동일 시리즈에서 재수상 불가)
 
 ## Citation
-TODO: 페이지 하단 인용 블록 복사
+Yao Yan, Walter Reade, Elizabeth Park. Predicting F1 Pit Stops. https://kaggle.com/competitions/playground-series-s6e5, 2026. Kaggle.
