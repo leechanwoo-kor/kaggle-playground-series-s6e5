@@ -28,3 +28,4 @@ pip install -r requirements.txt
 | 003 | EXP-002 + GPU + CAT iter 확대 (best_iter ~3485) | 0.95030 | 0.94964 |
 | 004 equal | EXP-003 + lr=0.02 + n_est 확대 (CAT best_iter ~9187) | 0.95042 | 0.94967 |
 | **004 opt** | EXP-004 blend opt (0.25, 0.25, 0.50) | **0.95048** | **0.94977** |
+| 005 | + Driver freq + fold-wise TE (실패) | 0.95025 / 0.95030 | 0.94964 |
