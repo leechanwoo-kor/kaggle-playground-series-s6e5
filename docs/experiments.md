@@ -51,6 +51,20 @@
 
 ---
 
+## 진단 - Early stopping 수렴점 (EXP-001 직후, 별도 노트북 없음)
+
+EXP-001 동일 설정에서 `n_estimators=5000`+`early_stopping_rounds=200`만 추가하여 자연 수렴점 확인:
+
+| 항목 | EXP-001 | ES diagnostic |
+|---|---|---|
+| OOF AUC | 0.94906 | **0.94913** (+0.00007) |
+| best_iter mean | — (1000 fixed) | **865** (819–932) |
+| Fold std | 0.00076 | 0.00073 |
+
+→ **lr=0.05 상한 ≈ 0.94915 부근**. EXP-001은 이미 거의 천장. lr 더 낮춰서 짜려면 별도 시도 필요. 모델 다양성(LGB/CAT)이 더 큰 레버일 가능성.
+
+---
+
 ## 학습된 교훈
 
 - **이 대회는 row-level random split** — random KFold가 LB와 일관됨 (CV-LB 격차 0.00032).
