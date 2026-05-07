@@ -47,7 +47,8 @@ License: CC BY 4.0
   - Stint=3 → 29.3%, Stint=4 → 17.2%, Stint=5+ → 5% 이하
 - TyreLife / RaceProgress / LapNumber가 도메인적 핵심 신호 (Compound별 마모 곡선 다름)
 - Train/Test 분포는 거의 동일 (covariate shift 없음)
-- ⚠️ **확인 필요**: `PitStop=1`일 때 `PitNextLap=1` 비율이 24.8% (PitStop=0의 19.1%보다 높음). 정의 재검토 필요 — 단순한 "현재 랩 핏" 의미가 아닐 수 있음
+- **데이터는 row-level synthetic**: `(Year, Race, Driver)` 그룹을 LapNumber로 정렬해도 Stint가 70.8% 그룹에서 감소(역행). `(LapNumber, Stint)` 쌍은 시간 순서를 따르지 않음. `(Stint, TyreLife)` 내부 일관성만 유지. → 시퀀스/lag 기반 FE는 무의미.
+- `PitStop`은 시간 의미 없는 단순 feature: PitStop=1 vs 0의 LapTime 거의 동일(90.96 vs 90.98). "PitStop=1 ∧ PitNextLap=1 24.8%"는 합성 marginal noise.
 
 ---
 

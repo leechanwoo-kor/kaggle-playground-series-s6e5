@@ -56,6 +56,8 @@
 - **이 대회는 row-level random split** — random KFold가 LB와 일관됨 (CV-LB 격차 0.00032).
 - 같은 stint의 lap들이 train/test에 분산돼 있어 baseline이 자연히 강함. 이는 누수가 아니라 데이터 분리 방식의 결과.
 - GroupKFold는 본 대회 LB와 매칭되지 않음 — 의도적 보수적 검증으로만 의미.
+- **데이터는 row-level synthetic** — `(Year, Race, Driver)` 그룹 내에서 LapNumber 따라 정렬해도 Stint가 70.8% 그룹에서 감소(역행). 즉 `(LapNumber, Stint)` 쌍은 시간 순서를 따르지 않음. `(Stint, TyreLife)` 내부 일관성만 유지됨. **시퀀스/lag 기반 FE 시도는 무의미**.
+- `PitStop`은 시간 의미 없는 단순 feature: PitStop=1 vs 0의 LapTime 거의 동일(90.96 vs 90.98), 핏인/아웃 가설 기각. PitStop=1 → 다음 lap Stint 증가 12%뿐. EDA에서 발견한 "PitStop=1 ∧ PitNextLap=1 비율 24.8%"는 합성 데이터의 marginal noise.
 
 ---
 
@@ -64,5 +66,5 @@
 - [x] EDA 노트북 (`eda.ipynb`)
 - [x] Baseline 학습/제출 (`xgb_baseline.ipynb`) — OOF 0.94906 / LB 0.94874
 - [x] 검증 전략 점검 — Random KFold 유지 결정
-- [ ] `PitStop` 컬럼 정의 재확인 (PitStop=1 → PitNextLap=1 비율 24.8% 의외)
+- [x] `PitStop` / 시퀀스 점검 — 데이터 row-level synthetic, 시퀀스 FE 무의미 결론
 - [ ] EXP-002: 학습 설정 개선 (early stopping, 10-Fold, lr 튜닝)
