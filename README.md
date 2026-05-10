@@ -31,3 +31,4 @@ pip install -r requirements.txt
 | 005 | + Driver freq + fold-wise TE (실패) | 0.95025 / 0.95030 | 0.94964 |
 | **006** | EXP-004 + multi-seed × 3 (XGB/LGB/CAT 모두) | **0.95053** | **0.94978** |
 | **007** | + MLP base (4-way blend opt 0.25/0.25/0.45/0.05) | **0.95053** | **0.94979** |
+| 008 | MLP 강화 (epochs 80, opt 0.25/0.25/0.40/0.10) | **0.95053** | — |
