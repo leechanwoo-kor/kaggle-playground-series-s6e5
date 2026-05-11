@@ -32,3 +32,4 @@ pip install -r requirements.txt
 | **006** | EXP-004 + multi-seed × 3 (XGB/LGB/CAT 모두) | **0.95053** | **0.94978** |
 | **007** | + MLP base (4-way blend opt 0.25/0.25/0.45/0.05) | **0.95053** | **0.94979** |
 | 008 | MLP 강화 (epochs 80, opt 0.25/0.25/0.40/0.10) | 0.95053 | 0.94973 ↓ |
+| 009 | PLR-MLP only (RealMLP의 PLR 직접 구현) | MLP solo **0.94486** (+0.00391 vs 008) | — |
