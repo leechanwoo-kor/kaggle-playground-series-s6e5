@@ -35,3 +35,4 @@ pip install -r requirements.txt
 | 009 | PLR-MLP only (RealMLP의 PLR 직접 구현) | MLP solo **0.94486** (+0.00391 vs 008) | — |
 | **010** | 4-way blend w/ PLR-MLP (opt 0.25/0.20/0.40/**0.15**) | **0.95061** | **0.94987** |
 | 011 | PLR-MLP + bin-cat (실패) | MLP solo 0.94444 (-0.00042 vs 009) | — |
+| 012 | PLR-MLP + inner ens=3 (MLP only) | MLP solo **0.94763** (+0.00277 vs 009) | — |
