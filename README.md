@@ -36,4 +36,4 @@ pip install -r requirements.txt
 | **010** | 4-way blend w/ PLR-MLP (opt 0.25/0.20/0.40/**0.15**) | **0.95061** | **0.94987** |
 | 011 | PLR-MLP + bin-cat (실패) | MLP solo 0.94444 (-0.00042 vs 009) | — |
 | 012 | PLR-MLP + inner ens=3 (MLP only) | MLP solo **0.94763** (+0.00277 vs 009) | — |
-| **013** | 4-way + PLR-MLP+inner ens=3 (opt 0.20/0.20/0.40/**0.20**) | **0.95063** (+0.00002 vs 010) | — |
+| **013** | 4-way + PLR-MLP+inner ens=3 (opt 0.20/0.20/0.40/**0.20**) | **0.95063** | 0.94986 ↓ |
