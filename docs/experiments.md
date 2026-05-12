@@ -52,6 +52,7 @@
 | **EXP-012 PLR-MLP + inner ens=3 solo** | **0.94763** | — | — | **+0.00277 vs EXP-009 PLR-MLP**. 모든 fold에서 +0.0025 일관 향상. multi-seed의 ~50배 효과 |
 | EXP-013 4-way blend equal | 0.95057 | — | — | +0.00012 vs EXP-010 equal. MLP가 더 균형 기여 |
 | EXP-013 4-way blend opt (0.20/0.20/0.40/**0.20**) | 0.95063 | 0.94986 | 0.00077 | OOF +0.00002 → **LB -0.00001** (전이 X). **EXP-010이 자체 학습 LB 천장 0.94987 확정** |
+| EXP-014 logit blend opt (post-hoc) | 0.95057 | — | — | **Logit < Linear -0.00006** (실패). imbalanced + calibrated 확률에선 linear 우위 |
 | EXP-007 단일: MLP | 0.94044 | — | — | 트리 대비 -0.009. 50 epoch 다 사용 — 추가 학습 여지 |
 | EXP-006 단일: XGB | 0.94969 | — | — | seed range 0.00006 |
 | EXP-006 단일: LGB | 0.94959 | — | — | seed range 0.00002 |
@@ -129,6 +130,22 @@
   - Blend opt (0.25, 0.30, 0.45) → 0.95035 — CAT 비중 자연 증가
 - **소요시간**: EXP-002 26분 → **17분** (CAT 25분 → 14분, iter 2배 늘었음에도 GPU로 단축)
 - **교훈**: 단일 모델 천장 풀어주는 것(CAT iter 확대) 만으로도 블렌딩에 +0.00020 전이됨
+
+---
+
+## EXP-014: Logit-space Blending (실패, post-hoc)
+
+- **노트북**: `exp014_logit_blend.ipynb`
+- **근거**: 외부 노트북 `diversity-correction-pipeline`에서 본 logit blending 기법 자체 적용. EXP-013 OOF/test 재활용 (학습 X)
+- **결과**: 모든 비교에서 Logit이 Linear보다 **-0.00006** 손실
+  - Linear equal: 0.95057 / Logit equal: 0.95051
+  - Linear opt (0.20/0.20/0.40/0.20): 0.95063 / Logit opt (같은 가중치): 0.95057
+- **원인 분석**:
+  - Logit OOF stats: mean **-3.2** (모든 모델), std 3.0 — 분포가 매우 negative-skewed (양성 비율 19.9% imbalanced)
+  - Logit space에서 한 모델이 confident일 때 그쪽으로 강하게 pull → AUC ranking 변경, 손해
+  - 우리 4모델은 이미 calibrated 확률이라 raw linear average가 정합
+- **교훈**: **AUC + imbalanced binary에선 linear blending이 logit보다 우위**. 외부 노트북 기법이 우리 case에 자동 효과는 아님 (EXP-011 bin-cat과 같은 교훈)
+- LB 제출 가치 없음 (OOF에서 이미 negative)
 
 ---
 
