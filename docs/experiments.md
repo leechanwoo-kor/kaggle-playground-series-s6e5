@@ -53,6 +53,7 @@
 | EXP-013 4-way blend equal | 0.95057 | — | — | +0.00012 vs EXP-010 equal. MLP가 더 균형 기여 |
 | EXP-013 4-way blend opt (0.20/0.20/0.40/**0.20**) | 0.95063 | 0.94986 | 0.00077 | OOF +0.00002 → **LB -0.00001** (전이 X). **EXP-010이 자체 학습 LB 천장 0.94987 확정** |
 | EXP-014 logit blend opt (post-hoc) | 0.95057 | — | — | **Logit < Linear -0.00006** (실패). imbalanced + calibrated 확률에선 linear 우위 |
+| EXP-015 PLR-ResMLP solo | 0.94341 | — | — | **-0.00145 vs EXP-009 PLR-MLP** (실패). 14 feature에 ResBlock 표현력 과함 |
 | EXP-007 단일: MLP | 0.94044 | — | — | 트리 대비 -0.009. 50 epoch 다 사용 — 추가 학습 여지 |
 | EXP-006 단일: XGB | 0.94969 | — | — | seed range 0.00006 |
 | EXP-006 단일: LGB | 0.94959 | — | — | seed range 0.00002 |
@@ -130,6 +131,21 @@
   - Blend opt (0.25, 0.30, 0.45) → 0.95035 — CAT 비중 자연 증가
 - **소요시간**: EXP-002 26분 → **17분** (CAT 25분 → 14분, iter 2배 늘었음에도 GPU로 단축)
 - **교훈**: 단일 모델 천장 풀어주는 것(CAT iter 확대) 만으로도 블렌딩에 +0.00020 전이됨
+
+---
+
+## EXP-015: PLR-ResMLP (실패, MLP only)
+
+- **노트북**: `exp015_plr_resmlp.ipynb`
+- **근거**: 외부 `nn-residual-network` 노트북의 Residual Block 패턴 자체 구현. PLR-MLP의 본체 `[256, 128, 64]`를 `input → 3 × ResidualBlock(256) → 1`로 교체
+- **결과**: MLP solo OOF **0.94341** (vs EXP-009 PLR-MLP 0.94486, **-0.00145**) — 부정
+- **Fold별 일관 -0.0012~-0.0018** (5 fold 모두)
+- **Early stop 빨라짐**: 30 epoch 전후 vs PLR-MLP의 35-39 epoch — overfit 시작 빠름
+- **원인**:
+  1. 일정 width 256 × 3 ResBlock 파라미터 ↑↑ → 14 feature 데이터에 capacity 과함
+  2. Residual은 깊은 NN에서 진가 — 우리 case는 3 layer로 충분
+  3. ReLU vs GELU 미세 차이도 영향
+- **교훈**: **외부 NN 패턴 모두 우리에게 효과 X**. 점진 축소 MLP + PLR가 우리 sweet spot. 합성 tabular 14 feature는 NN 표현력보다 입력 표현(PLR)이 핵심
 
 ---
 

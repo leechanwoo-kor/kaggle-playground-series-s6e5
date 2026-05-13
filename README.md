@@ -38,3 +38,4 @@ pip install -r requirements.txt
 | 012 | PLR-MLP + inner ens=3 (MLP only) | MLP solo **0.94763** (+0.00277 vs 009) | — |
 | **013** | 4-way + PLR-MLP+inner ens=3 (opt 0.20/0.20/0.40/**0.20**) | **0.95063** | 0.94986 ↓ |
 | 014 | Logit-space blending (post-hoc, no retraining) | 0.95057 (-0.00006 vs linear) | — (실패) |
+| 015 | PLR-ResMLP (Residual block 추가) | MLP solo 0.94341 (-0.00145 vs PLR-MLP) | — (실패) |
